@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class Question extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'category_id'
+        'exam_id',
+        'qtype',
+        'question',
+        'duration',
     ];
 
-    public function category()
+    public function exam()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Exam::class);
     }
 }

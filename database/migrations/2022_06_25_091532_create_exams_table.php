@@ -15,6 +15,21 @@ class CreateExamsTable extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('skill_id')
+                ->constrained('skills')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+            $table->string('name');
+            $table->string('description');
+            $table->integer('number_questions');
+            $table->enum('difficulty', ['easy', 'hard', 'medium'])->default('medium');
+            $table->integer('base_score');
+            $table->date('date');
+            $table->integer('hours');
+            $table->integer('minutes');
+            $table->unsignedTinyInteger('duration');
+            $table->boolean('hasStarted')->default(0);
+            $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
         });
     }

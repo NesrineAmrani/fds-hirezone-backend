@@ -8,4 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'skill_id',
+        'name',
+        'base_score',
+        'number_questions',
+        'duration',
+        'date',
+        'hasStarted',
+        'created_by',
+    ];
+
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'exam_user');
+    }
+
 }

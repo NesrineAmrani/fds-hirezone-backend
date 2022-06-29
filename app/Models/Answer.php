@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class Answer extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'category_id'
+        'question_id',
+        'option_id',
+        'is_correct'
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 }
